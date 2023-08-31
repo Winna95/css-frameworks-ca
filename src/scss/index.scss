@@ -1,1 +1,54 @@
+@import "./_variables.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,900;1,100;1,300;1,400;1,500;1,700&family=Rochester&display=swap");
+
+
+ .bg-orange{
+    background-color: $primary-color;
+}
+
+.light-orange {
+    color: $primary-color;
+}
+
+.bs-body-color {
+    background-color: $bs-body-color;
+}
+
+.bs-white-color {
+    background-color: $white;
+}
+
+.grey {
+    color: $grey-color;
+}
+
+h1 {
+    font-family: 'Trirong', serif;
+}
+
+body {
+    font-family: 'Public Sans', sans-serif;
+}
+
+.icon {
+    font-size: 35px;
+    color: white;
+}
+
+.post-img {
+    height: 450px;
+    width: 100%;
+    object-fit: cover;
+
+}
+
+.fa-magnifying-glass {
+    color: $grey-color;
+}
+
+.fa-bars {
+    color: $primary-color;
+    font-size: 25px;
+}
 
