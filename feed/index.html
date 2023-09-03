@@ -31,31 +31,50 @@
   </head>
 
   <body class="bs-body-color">
-    <header class="bg-secondary">
-      <div class="dropdown d-flex justify-content-end">
-        <button
-          class="btn btn-secondary"
-          type="button"
-          id="dropdownMenu2"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
+    <nav class="navbar navbar-expand bg-secondary">
+      <div class="container">
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarSupportedContent"
         >
-          <i class="fa-solid fa-bars"></i>
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-          <li>
-            <button class="dropdown-item fw-bold text-center" type="button">
-              <a href="/feed/">Feed</a>
-            </button>
-          </li>
-          <li>
-            <button class="dropdown-item fw-bold text-center" type="button">
-              <a href="/profile/">Profile</a>
-            </button>
-          </li>
-        </ul>
+          <ul class="navbar-nav ml-auto bg-secondary">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-bars"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <button
+                    class="dropdown-item fw-bold text-center"
+                    type="button"
+                  >
+                    <a href="/feed/">Feed</a>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item fw-bold text-center"
+                    type="button"
+                  >
+                    <a href="/profile/">Profile</a>
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
-    </header>
+    </nav>
     <main>
       <div class="container">
         <h1 class="text-center mt-5 mb-4 fw-bolder">Workout journey</h1>
