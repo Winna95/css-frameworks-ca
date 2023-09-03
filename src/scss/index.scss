@@ -32,14 +32,12 @@ body {
 }
 
 .icon {
-    font-size: 35px;
     color: white;
 }
 
 .post-img {
-    height: 450px;
     width: 100%;
-    object-fit: cover;
+    max-height: 400px;
 
 }
 
