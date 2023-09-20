@@ -28,6 +28,7 @@
       src="https://kit.fontawesome.com/b318972c4d.js"
       crossorigin="anonymous"
     ></script>
+    <script type="module" src="./feed-index.js"></script>
   </head>
 
   <body class="bs-body-color">
@@ -67,6 +68,14 @@
                     type="button"
                   >
                     <a href="/profile/">Profile</a>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item fw-bold text-center"
+                    type="button"
+                  >
+                    <a href="/">Log out</a>
                   </button>
                 </li>
               </ul>
@@ -190,170 +199,20 @@
           </div>
         </form>
 
-        <div class="row px-3 py-5">
-          <div
-            class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto mb-5"
-          >
-            <div class="d-flex pt-4">
-              <img
-                src="../images/jooseph-gonzalez-iFgRcqHznqg-unsplash.jpg"
-                alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-fill"
-              />
-              <div class="ms-3 mt-4">
-                <b>@OlaVen</b>
-                <p>23.08.2023</p>
-              </div>
-            </div>
-            <div class="text-center p-5">
-              <img
-                src="../images/dane-wetton-t1NEMSm1rgI-unsplash.jpg"
-                alt="woman stretching"
-                class="img-fluid rounded-2 post-img object-fit-cover"
-              />
-            </div>
-            <h4 class="fw-bolder ps-5">Stretching</h4>
-            <p class="mx-auto px-5 pb-5">
-              Lorem ipsum dolor sit amet. Et nobis recusandae aut blanditiis
-              blanditiis est nihil velit non galisum incidunt. Rem voluptatem
-              ipsam et voluptatem
-            </p>
+        <form class="d-flex justify-content-end me-lg-5 pe-lg-5">
+          <div class="mt-3 bs-white-color rounded-2 ps-4">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input
+              type="search"
+              class="border-0 rounded-2 p-1"
+              placeholder="Search for tag..."
+            />
           </div>
+        </form>
 
-          <div class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto">
-            <div class="d-flex pt-4">
-              <img
-                src="../images/michael-dam1-mEZ3PoFGs_k-unsplash.jpg"
-                alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-fill"
-              />
-              <div class="ms-3 mt-4">
-                <b>@KariN1</b>
-                <p>23.08.2023</p>
-              </div>
-            </div>
-            <div class="text-center p-5">
-              <img
-                src="../images/bradley-dunn-ACbu5AY5Tvk-unsplash.jpg"
-                alt="woman stretching"
-                class="img-fluid rounded-2 post-img object-fit-cover"
-              />
-            </div>
-            <h4 class="fw-bolder ps-5">Full body workout</h4>
-            <p class="mx-auto px-5 pb-5">
-              Lorem ipsum dolor sit amet. Et nobis recusandae aut blanditiis
-              blanditiis est nihil velit non galisum incidunt. Rem voluptatem
-              ipsam et voluptatem
-            </p>
-          </div>
-
-          <div class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto">
-            <div class="d-flex pt-4">
-              <img
-                src="../images/batell-studio-ttSRjiYG_WM-unsplash.jpg"
-                alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-fill"
-              />
-              <div class="ms-3 mt-4">
-                <b>@Jannice</b>
-                <p>23.08.2023</p>
-              </div>
-            </div>
-            <div class="text-center p-5">
-              <img
-                src="../images/loogan-weaver-lgnwvr-amgv9YUg-MA-unsplash.jpg"
-                alt="woman stretching"
-                class="img-fluid rounded-2 post-img object-fit-cover"
-              />
-            </div>
-            <h4 class="fw-bolder ps-5">Yoga</h4>
-            <p class="mx-auto px-5 pb-5">
-              Lorem ipsum dolor sit amet. Et nobis recusandae aut blanditiis
-              blanditiis est nihil velit non galisum incidunt. Rem voluptatem
-              ipsam et voluptatem
-            </p>
-          </div>
-
-          <div class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto">
-            <div class="d-flex pt-4">
-              <img
-                src="../images/stephaniee-liverani-Zz5LQe-VSMY-unsplash.jpg"
-                alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-fill"
-              />
-              <div class="ms-3 mt-4">
-                <b>@IdaBilo</b>
-                <p>23.08.2023</p>
-              </div>
-            </div>
-            <div class="text-center p-5">
-              <img
-                src="../images/anastase-maragos-fG0p4Qh_aWI-unsplash.jpg"
-                alt="woman stretching"
-                class="img-fluid rounded-2 post-img object-fit-cover"
-              />
-            </div>
-            <h4 class="fw-bolder ps-5">Upper body workout</h4>
-            <p class="mx-auto px-5 pb-5">
-              Lorem ipsum dolor sit amet. Et nobis recusandae aut blanditiis
-              blanditiis est nihil velit non galisum incidunt. Rem voluptatem
-              ipsam et voluptatem
-            </p>
-          </div>
-          <div class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto">
-            <div class="d-flex pt-4">
-              <img
-                src="../images/michael-dam1-mEZ3PoFGs_k-unsplash.jpg"
-                alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-fill"
-              />
-              <div class="ms-3 mt-4">
-                <b>@KariN1</b>
-                <p>22.08.2023</p>
-              </div>
-            </div>
-            <div class="text-center p-5">
-              <img
-                src="../images/jonathan-borba-lrQPTQs7nQQ-unsplash.jpg"
-                alt="woman stretching"
-                class="img-fluid rounded-2 post-img object-fit-cover"
-              />
-            </div>
-            <h4 class="fw-bolder ps-5">Abs workout</h4>
-            <p class="mx-auto px-5 pb-5">
-              Lorem ipsum dolor sit amet. Et nobis recusandae aut blanditiis
-              blanditiis est nihil velit non galisum incidunt. Rem voluptatem
-              ipsam et voluptatem
-            </p>
-          </div>
-
-          <div class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto">
-            <div class="d-flex pt-4">
-              <img
-                src="../images/luis-villasmill-hh3ViD0r0Rc-unsplash.jpg"
-                alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-fill"
-              />
-              <div class="ms-3 mt-4">
-                <b>@KawinP</b>
-                <p>22.08.2023</p>
-              </div>
-            </div>
-            <div class="text-center p-5">
-              <img
-                src="/images/victor-freitas-hOuJYX2K5DA-unsplash.jpg"
-                alt="woman stretching"
-                class="img-fluid rounded-2 post-img object-fit-cover"
-              />
-            </div>
-            <h4 class="fw-bolder ps-5">Legs workout</h4>
-            <p class="mx-auto px-5 pb-5">
-              Lorem ipsum dolor sit amet. Et nobis recusandae aut blanditiis
-              blanditiis est nihil velit non galisum incidunt. Rem voluptatem
-              ipsam et voluptatem
-            </p>
-          </div>
+        <div class="row px-3 py-5" id="postsPlaceholder">
         </div>
+        <div class="d-none" id="noPostsPlaceholder">Oops, looks like none of your friends have posted anything yet. Try following some new people?</div>
       </div>
     </main>
     <footer></footer>
