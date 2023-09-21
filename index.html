@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Log in page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@900&family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&family=Trirong:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link href="dist/css/index.css" rel="stylesheet" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="index.js"></script>
+  </head>
+
+  <body class="bs-body-color">
+    <header></header>
+    <main>
+      <div class="container">
+        <h1 class="text-center mt-5 mb-4 text-secondary fw-bolder">Sign in</h1>
+        <h5 class="text-center mt-1 mb-5 col-md-4 col-lg-3 mx-auto">
+          Share your workout journey with others
+        </h5>
+
+        <form action="/profile" novalidate class="row px-4 needs-validation">
+          <div
+            class="col-12 col-sm-8 col-md-6 col-lg-4 g-3 mx-auto px-4 py-5 mt-n2 mb-5 bs-white-color rounded-2"
+          >
+            <div>
+              <label for="emailInput" class="form-label mb-2 fw-bolder"
+                >Email</label
+              >
+            </div>
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="emailInput"
+                value=""
+                placeholder="Enter your email"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">Email is required</div>
+            </div>
+
+            <div class="col-md-12">
+              <label for="pwInput" class="form-label mb-2 fw-bolder"
+                >Password</label
+              >
+            </div>
+            <div class="col-md-12 mb-5">
+              <input
+                type="password"
+                class="form-control"
+                id="pwInput"
+                value=""
+                placeholder="Enter your password"
+                required
+                minlength="8"
+              />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">
+                A password of at least 8 characters is required
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button
+                class="btn btn-primary col-12 text-white fw-bold mb-2"
+                type="submit"
+              >
+                Sign in
+              </button>
+            </div>
+            <div>
+              <a href="#" class="grey">Forget password?</a>
+            </div>
+            <div class="mt-0 mb-1">
+              <a href="#" class="grey">Sign up</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
