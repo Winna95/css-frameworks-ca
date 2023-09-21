@@ -67,6 +67,7 @@ export async function logInUser (email, password) {
 
       const jwt = data.accessToken;
       localStorage.setItem("jwt", jwt);
+      localStorage.setItem("name", data.name);
       return true;
 }
 

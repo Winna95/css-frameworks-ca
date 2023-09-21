@@ -1,9 +1,45 @@
 import { isAuthenticated } from "../js/authenticate.js";
-import {getPostsFromFollowed} from "../js/posts-api.js";
+import {createPost, getPostsFromFollowed} from "../js/posts-api.js";
 
 if(!isAuthenticated()) {
     window.location = "/"
 }
+
+const createPostForm = document.querySelector("#createPostForm")
+createPostForm.addEventListener("submit", submitEvent => {
+    //sjekk validering
+    // hvis ok - kall på funksjon som sender kall til serveren
+    // hvis det ikke går bra, vis form validations errors.
+    // vise feilmelding fra serveren ved feil.
+    // hvis det gikk bra å sende til serveren, null ut input feltene og vis melding til bruker om at posten er registert og med link til profil.
+    submitEvent.stopPropagation();
+    submitEvent.preventDefault();
+    if(createPostForm.checkValidity()) {
+        const headerInput = document.querySelector("#headerInput").value;
+        const textInput = document.querySelector("#textInput").value;
+        const imageInput = document.querySelector("#imageInput").value;
+        const tagsInput = document.querySelector("#tagInput").value;
+        createPost(headerInput, textInput, tagsInput, imageInput).then(successfulPost=> {
+            if(successfulPost) {
+                document.querySelector("#headerInput").value = "";
+                document.querySelector("#textInput").value = "";
+                document.querySelector("#imageInput").value = "";
+                document.querySelector("#tagInput").value = "";
+                const profileLink = document.querySelector("#profileLink");
+                profileLink.classList.remove("d-none");
+                setTimeout(()=>{
+                    profileLink.classList.add("d-none");
+                }, 3000);
+            } else {
+                //Todo change use of alert to something more pretty.
+                alert("Your post could not be saved. Please check your inputs or try again later")
+            }
+        });
+    } else {
+        createPostForm.classList.add('was-validated');
+    }
+})
+
 
 getPostsFromFollowed().then(posts => {
     if(posts.length == 0) {

@@ -3,7 +3,6 @@ const baseUrl = "https://api.noroff.dev/api/v1";
 export async function getPostsFromFollowed () {
 
 
-    //Todo - remember to change back to follow
       const url = baseUrl + "/social/posts/following?_author=true";
       const jwt = localStorage.getItem("jwt")
       const fetchOptions = {

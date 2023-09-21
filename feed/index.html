@@ -127,8 +127,9 @@
             See all friends
           </button>
         </div>
+
         <div>
-          <form class="row p-3">
+          <form novalidate class="row p-3" id="createPostForm">
             <div
               class="col-md-8 col-lg-6 col-sm-12 mx-auto px-4 py-4 mt-5 mb-5 bs-white-color rounded-2"
             >
@@ -137,7 +138,7 @@
                 class="form-control mt-0 border-0"
                 id="headerInput"
                 value=""
-                placeholder="Tape in header"
+                placeholder="Type in header"
                 required
               />
               <textarea
@@ -151,26 +152,35 @@
               ></textarea>
               <div class="row">
                 <div
-                  class="btn btn-primary mx-2 col-5 d-flex justify-content-center"
+                  class="mx-2 col-6 d-flex justify-content-center"
                 >
-                  <i class="fa-regular fa-image align-self-center icon"></i>
-                  <label
-                    class="form-label text-white mt-2 ms-1 fw-bolder"
-                    for="customFile1"
-                  >
-                    Choose file</label
-                  >
                   <input
-                    type="file"
-                    class="form-control d-none"
-                    id="customFile1"
-                  />
+                  type="text"
+                  class="form-control mt-0 border-0"
+                  id="imageInput"
+                  value=""
+                  placeholder="Image url (optional)">
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  class="mx-2 col-6 d-flex justify-content-center"
+                >
+                  <input
+                  type="text"
+                  class="form-control mt-0 border-0"
+                  id="tagInput"
+                  value=""
+                  placeholder="tags (optional)">
                 </div>
               </div>
               <div class="d-flex justify-content-end row">
                 <button class="btn btn-primary col-3 text-white fw-bold mb-2">
                   Post
                 </button>
+              </div>
+              <div class="row d-none" id="profileLink">
+                <p class="col-10 mx-auto">Post submitted. Check your <a>profile</a> to see your latest posts</p>
               </div>
             </div>
           </form>
