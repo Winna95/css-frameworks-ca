@@ -72,7 +72,7 @@ export async function getPostsByUser (nameOfUser) {
     console.log(data);
     
     if(data.errors && data.errors.length > 0) {
-      return false;
+      throw new Error(data.errors.join(" "));
     } 
     return data;
 }
