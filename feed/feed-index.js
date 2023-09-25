@@ -40,13 +40,48 @@ createPostForm.addEventListener("submit", submitEvent => {
     }
 })
 
-
+let allPostsFromServer;
 getPostsFromFollowed().then(posts => {
-    if(posts.length == 0) {
+    if(posts.length === 0) {
         const noPostPlaceholder = document.querySelector("#noPostsPlaceholder");
         noPostPlaceholder.classList.remove("d-none");
+    } else  {
+        allPostsFromServer = posts;
+        insertPostsAsHtml(allPostsFromServer);
     }
-    const postsHtml = posts.map(post => {
+})
+
+//legg på key up eventlistener på seach input (for å oppdage hver gaang noen skriver noe)
+//i eventlistenern sjekk om innholdet i inputen ikke er tomt eller blankt
+//filtrere listen over lle poster, basert på det brukeren har skrevet inn.
+// vis frem html for de gjenverende postene etter filtrering.
+
+
+const searchInput = document.querySelector("#searchInput");
+console.log(searchInput);
+
+searchInput.onkeyup = function (event) {
+    console.log(event);
+    const searchQuery = searchInput.value
+    console.log(searchQuery);
+    if(searchQuery && searchQuery !== "" && searchQuery !== " " ) {
+       const filteredPosts = allPostsFromServer.filter(postFromServer => {
+            const jsonForPosts = JSON.stringify(postFromServer).toLowerCase();
+            const index = jsonForPosts.indexOf(searchQuery.toLowerCase());
+            if(index === -1) {
+                return false
+            }
+            return true;
+        });
+       insertPostsAsHtml(filteredPosts);
+    } else {
+        insertPostsAsHtml(allPostsFromServer);
+    }
+}
+
+
+function insertPostsAsHtml(postsToShow) {
+    const postsHtml =  postsToShow.map(post => {
         return `<div
             class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto mb-5"
           >
@@ -79,8 +114,7 @@ getPostsFromFollowed().then(posts => {
     }).join(" ");
     const placeholderPosts = document.querySelector("#postsPlaceholder");
     placeholderPosts.innerHTML = postsHtml
-})
-
+}
 function createHtmlForTag (tag) {
     return `<button class="fw-bolder border-0 bs-white-color">
                 #${tag}
