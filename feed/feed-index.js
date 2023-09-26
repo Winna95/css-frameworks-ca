@@ -41,15 +41,22 @@ createPostForm.addEventListener("submit", submitEvent => {
 })
 
 let allPostsFromServer;
-getPostsFromFollowed().then(posts => {
-    if(posts.length === 0) {
+
+function fetchPostFromServer(tag) {
+    getPostsFromFollowed(tag).then(posts => {
         const noPostPlaceholder = document.querySelector("#noPostsPlaceholder");
-        noPostPlaceholder.classList.remove("d-none");
-    } else  {
-        allPostsFromServer = posts;
-        insertPostsAsHtml(allPostsFromServer);
-    }
-})
+        if (posts.length === 0) {
+            noPostPlaceholder.classList.remove("d-none");
+            insertPostsAsHtml([])
+        } else {
+            allPostsFromServer = posts;
+            insertPostsAsHtml(allPostsFromServer);
+            noPostPlaceholder.classList.add("d-none");
+        }
+    })
+}
+
+fetchPostFromServer();
 
 //legg på key up eventlistener på seach input (for å oppdage hver gaang noen skriver noe)
 //i eventlistenern sjekk om innholdet i inputen ikke er tomt eller blankt
@@ -121,5 +128,23 @@ function createHtmlForTag (tag) {
               </button>`;
 }
 
+const filterTagInput = document.querySelector("#filterTagInput");
+filterTagInput.onkeyup = function (event) {
+    const filterQuery = filterTagInput.value;
+    if(filterQuery && filterQuery !== "" && filterQuery !== " ") {
+        fetchPostFromServer(filterQuery);
+
+    } else {
+        fetchPostFromServer();
+    }
+}
+
+//hente tags fra api
+// legge til onkeyup eventlistener i søke feltet
+//i eventlistenern sjekk om innholdet i inputen ikke er tomt eller blankt
+//filtrere listen over alle poster, basert på det brukeren har skrevet inn via api'et.
+//vis frem html for de postene som inneholder den tagget det er søkt etter.
+//dersom det ikke er noen poster som inneholder den taggen det søkes etter, vis ingen poster.
+//hvis bruker hvisker bort, må postene lastes inn på nytt.
 
 

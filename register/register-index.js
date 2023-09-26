@@ -49,4 +49,6 @@ registerForm.addEventListener("submit", event => {
     } else {
         registerForm.classList.add('was-validated');
     }
-}) 
+})
+
+

@@ -1,9 +1,12 @@
 const baseUrl = "https://api.noroff.dev/api/v1";
 
-export async function getPostsFromFollowed () {
+export async function getPostsFromFollowed (tag) {
 
 
-      const url = baseUrl + "/social/posts/following?_author=true";
+      let url = baseUrl + "/social/posts/following?_author=true&_active=true`";
+    if(tag) {
+        url = url + `&_tag=${tag}`
+    }
       const jwt = localStorage.getItem("jwt")
       const fetchOptions = {
         headers: {Authorization: "Bearer " + jwt}
@@ -58,7 +61,8 @@ export async function createPost (title, postText, tags, pictureUrl) {
 
 export async function getPostsByUser (nameOfUser) {
    
-    const url = baseUrl + `/social/profiles/${nameOfUser}/posts`;
+    let url = baseUrl + `/social/profiles/${nameOfUser}/posts`;
+    
     const jwt = localStorage.getItem("jwt")
     const fetchOptions = {
       headers: {
