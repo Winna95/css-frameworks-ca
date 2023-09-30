@@ -19,7 +19,11 @@ createPostForm.addEventListener("submit", submitEvent => {
         const textInput = document.querySelector("#textInput").value;
         const imageInput = document.querySelector("#imageInput").value;
         const tagsInput = document.querySelector("#tagInput").value;
-        createPost(headerInput, textInput, tagsInput, imageInput).then(successfulPost=> {
+        let tags;
+        if(tagsInput) {
+            tags = [tagsInput]
+        }
+        createPost(headerInput, textInput, tags, imageInput).then(successfulPost=> {
             if(successfulPost) {
                 document.querySelector("#headerInput").value = "";
                 document.querySelector("#textInput").value = "";

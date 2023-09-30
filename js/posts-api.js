@@ -32,7 +32,7 @@ export async function createPost (title, postText, tags, pictureUrl) {
         title: title,
         body: postText
     }
-    if (tags && tags === Array.isArray(tags) ) {
+    if (tags && Array.isArray(tags) ) {
         requestBody.tags = tags
     };
     if (pictureUrl) {
