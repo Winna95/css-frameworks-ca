@@ -17,7 +17,8 @@ registerForm.addEventListener("submit", event => {
         const nameInput = document.querySelector("#nameInput").value;
         const emailInput = document.querySelector("#emailInput").value;
         const passwordInput = document.querySelector("#pwInput").value;
-        registerNewUser(nameInput, emailInput, passwordInput).then(registrationErrors => {
+        const profileImgInput = document.querySelector("#profileImgInput").value;
+        registerNewUser(nameInput, emailInput, passwordInput, profileImgInput).then(registrationErrors => {
             if(registrationErrors.length === 0) {
                 logInUser(emailInput, passwordInput).then(successfulLogin => {
                     if(successfulLogin) {

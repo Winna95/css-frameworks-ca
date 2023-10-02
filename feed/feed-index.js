@@ -35,8 +35,11 @@ createPostForm.addEventListener("submit", submitEvent => {
                     profileLink.classList.add("d-none");
                 }, 3000);
             } else {
-                //Todo change use of alert to something more pretty.
-                alert("Your post could not be saved. Please check your inputs or try again later")
+                const placeholderUnsuccessfulPostSubmit = document.querySelector("#placeholderUnsuccessfulPostSubmit");
+                placeholderUnsuccessfulPostSubmit.classList.remove("d-none");
+                setTimeout(() => {
+                    placeholderUnsuccessfulPostSubmit.classList.add("d-none")
+                },3000)
             }
         });
     } else {
@@ -100,7 +103,7 @@ function insertPostsAsHtml(postsToShow) {
               <img
                 src="${post.author.avatar}"
                 alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-fill"
+                class="img-fluid rounded-circle col-2 ms-5 object-fit-cover feed-avatar-img"
               />
               <div class="ms-3 mt-4">
                 <b>${post.author.name}</b>

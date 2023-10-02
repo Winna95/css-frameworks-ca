@@ -78,7 +78,7 @@ function loadAndRenderPosts() {
             <div class="d-flex justify-content-end">
             <button id="editBtn" class="mt-2 me-2 btn btn-primary px-3 text-white fw-bold" data-postId="${postByUser.id}">Update</button>
             <button id="deleteBtn" class="mt-2 btn btn-primary px-3 text-white fw-bold" data-postId="${postByUser.id}">Delete</button>
-            <div id="deletePostPlaceholder" class="d-none">Could not delete post, please try again later</div>
+            <div id="deletePostPlaceholder" class="d-none alert alert-danger">Could not delete post, please try again later</div>
             </div>
             
               <img
@@ -187,7 +187,7 @@ getProfileForName(nameOfUser, false).then(profile => {
               src="${profile.avatar}"
               alt="profile
         picture"
-              class="img-fluid rounded-circle col-4"
+              class="img-fluid rounded-circle col-4 h-75 mw-50 object-fit-cover"
             />
             <div class="align-self-center ms-5">
               <h2 class="fw-bold">${profile.name}</h2>

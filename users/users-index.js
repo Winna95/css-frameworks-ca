@@ -27,7 +27,7 @@ Promise.all(promises).then((responses) => {
                     <img
                             src="${profile.avatar}"
                             alt="profile picture"
-                            class="img-fluid rounded-circle h-75 mt-5"
+                            class="img-fluid rounded-circle mt-5 object-fit-cover user-img"
                     />
                 </div>
                     <div class="col-7">
@@ -64,7 +64,7 @@ Promise.all(promises).then((responses) => {
                 alert("unable to follow user, please try again later")
             }
         })
-        console.log("hei");
+
     }
     function unfollowClickHandler(btnElement) {
         const nameOfUser = btnElement.getAttribute('data-nameOfUser')
@@ -81,7 +81,7 @@ Promise.all(promises).then((responses) => {
                 alert("unable to Unfollow user, please try again later")
             }
         })
-        console.log("hei");
+
     }
 
 })

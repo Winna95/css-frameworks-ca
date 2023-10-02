@@ -188,6 +188,9 @@
                   Post
                 </button>
               </div>
+              <div id="placeholderUnsuccessfulPostSubmit" class="row d-none">
+                <p class="col-10 mx-auto alert alert-danger">Your post could not be saved. Please check your inputs or try again later</p>
+              </div>
               <div class="row d-none" id="profileLink">
                 <p class="col-10 mx-auto">Post submitted. Check your <a>profile</a> to see your latest posts</p>
               </div>
@@ -233,7 +236,7 @@
 
         <div class="row px-3 py-5" id="postsPlaceholder">
         </div>
-        <div class="d-none" id="noPostsPlaceholder">Oops, looks like none of your friends have posted anything yet. Try following some new people?</div>
+        <div class="d-none text-center mb-5 alert alert-info col-6 mx-auto" id="noPostsPlaceholder">Oops, looks like none of your friends have posted anything yet. Try following some new people?</div>
       </div>
     </main>
     <footer></footer>

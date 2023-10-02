@@ -1,6 +1,6 @@
 const baseUrl = "https://api.noroff.dev/api/v1";
 
-export async function registerNewUser (name, email, password) {
+export async function registerNewUser (name, email, password, profileImgUrl) {
     if(!name) {
         throw new Error("Name is requiered to register a new user");
     }
@@ -14,7 +14,8 @@ export async function registerNewUser (name, email, password) {
     const requestBody = {
         name: name,
         email: email,
-        password: password
+        password: password,
+        avatar: profileImgUrl
       };
       const url = baseUrl + "/social/auth/register";
       const fetchOptions = {
