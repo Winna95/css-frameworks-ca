@@ -9,7 +9,14 @@ import { logInUser, registerNewUser } from "../js/authenticate-api.js";
 
 const registerForm = document.querySelector("#registerForm");
 
-
+/**
+ * Event listener for the registration form submission.
+ *
+ * This function handles the submission of the registration form, validates user input,
+ * registers a new user, and logs them in if registration is successful.
+ *
+ * @param {Event} event - The event object representing the form submission.
+ */
 registerForm.addEventListener("submit", event => {
     event.stopPropagation();
     event.preventDefault();

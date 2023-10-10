@@ -2,6 +2,12 @@ import {followUser, getAllProfiles, getProfileForName, unFollowUser} from "../js
 
 const nameOfUser = localStorage.getItem("name")
 const promises = [getProfileForName(nameOfUser, true), getAllProfiles()];
+
+/**
+ * Handles the logic for rendering user profiles and managing follow/unfollow actions.
+ *
+ * @param {Array<Promise>} promises - An array of promises containing user profile data.
+ */
 Promise.all(promises).then((responses) => {
     const profileForName = responses[0];
     const allProfiles = responses[1];
@@ -49,7 +55,11 @@ Promise.all(promises).then((responses) => {
     allUnfollowBtns.forEach(unFollowBtn => {
         unFollowBtn.addEventListener("click",event => unfollowClickHandler(unFollowBtn))
    })
-
+    /**
+     * Handles the click event for the "Follow" button.
+     *
+     * @param {HTMLElement} btnElement - The button element representing the "Follow" button.
+     */
     function followClickHandler(btnElement) {
         const nameOfUser = btnElement.getAttribute('data-nameOfUser')
         followUser(nameOfUser).then(successfulFollowing => {
@@ -66,6 +76,11 @@ Promise.all(promises).then((responses) => {
         })
 
     }
+    /**
+     * Handles the click event for the "Unfollow" button.
+     *
+     * @param {HTMLElement} btnElement - The button element representing the "Unfollow" button.
+     */
     function unfollowClickHandler(btnElement) {
         const nameOfUser = btnElement.getAttribute('data-nameOfUser')
         unFollowUser(nameOfUser).then(successfulUnFollowing => {
@@ -86,7 +101,13 @@ Promise.all(promises).then((responses) => {
 
 })
 
-
+/**
+ * Generates HTML for a follow/unfollow button based on the followed status.
+ *
+ * @param {boolean} followed - Indicates whether the user is followed.
+ * @param {string} nameOfUser - The name of the user to follow/unfollow.
+ * @returns {string} - The HTML for the follow/unfollow button.
+ */
 function generateFollowButtonHtml(followed, nameOfUser) {
     if(followed) {
        return `<button id="unfollowBtn" data-nameOfUser="${nameOfUser}" aria-pressed="true" data-bs-toggle="button" class="btn btn-primary active mt-4">Unfollow</button>`;

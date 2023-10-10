@@ -3,7 +3,11 @@ import { logInUser } from "./js/authenticate-api.js"
 // Fetch all the forms we want to apply custom Bootstrap validation styles to
 const forms = document.querySelectorAll('.needs-validation')
 
-// Loop over them and prevent submission
+/**
+ * Adds submit event listeners to a list of forms to handle login actions.
+ *
+ * @param {NodeList} forms - The list of HTML form elements to attach event listeners to.
+ */
 Array.from(forms).forEach(form => {
   form.addEventListener('submit', event => {
     event.preventDefault()
@@ -31,13 +35,7 @@ Array.from(forms).forEach(form => {
 })
 
 
-/*updatePost(810, "hade", "jeg er her i dag", []);
-getPostsByUser("Yigfh");
 
-deletePost(810);
-getPostsByUser("Yigfh");*/
-
-//getPostById(808);
 
 
 

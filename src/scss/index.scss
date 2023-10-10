@@ -56,6 +56,35 @@ body {
 }
 
 .feed-avatar-img {
-    max-height: 150px;
-    max-width: 150px;
+    height: 70px;
+    width: 70px;
 }
+@media (min-width: 576px) {
+    .feed-avatar-img {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+@media (min-width: 768px) {
+    .feed-avatar-img {
+        height: 120px;
+        width: 120px;
+    }
+}
+@media (min-width: 992px) {
+    .feed-avatar-img{
+        height: 150px;
+        width: 150px;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .feed-avatar-img{
+        height: 200px;
+        width: 200px;
+    }
+
+}
+

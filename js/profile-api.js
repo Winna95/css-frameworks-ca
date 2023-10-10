@@ -1,4 +1,12 @@
 const baseUrl = "https://api.noroff.dev/api/v1";
+
+/**
+ * Retrieves a user's profile information by their name.
+ *
+ * @param {string} name - The name of the user whose profile to retrieve.
+ * @param {boolean} includeFollowing - Whether to include the user's following list in the profile (optional).
+ * @returns {Promise<Object|Array>} The user's profile object if retrieval is successful; otherwise, an empty array.
+ */
 export async function getProfileForName (name, includeFollowing) {
     let url = baseUrl + `/social/profiles/${name}`;
     if(includeFollowing) {
@@ -12,13 +20,18 @@ export async function getProfileForName (name, includeFollowing) {
     const response = await fetch(url, fetchOptions);
 
     const data = await response.json();
-    console.log(data);
 
     if(data.errors && data.errors.length > 0) {
         return [];
     }
     return data;
 }
+
+/**
+ * Retrieves a list of all user profiles from the social platform.
+ *
+ * @returns {Promise<Array>} An array of user profile objects if retrieval is successful; otherwise, an empty array.
+ */
 export async function getAllProfiles () {
     let url = baseUrl + `/social/profiles`;
     const jwt = localStorage.getItem("jwt")
@@ -29,7 +42,6 @@ export async function getAllProfiles () {
     const response = await fetch(url, fetchOptions);
 
     const data = await response.json();
-    console.log(data);
 
     if(data.errors && data.errors.length > 0) {
         return [];
@@ -37,6 +49,12 @@ export async function getAllProfiles () {
     return data;
 }
 
+/**
+ * Follows a user on the social platform by their username.
+ *
+ * @param {string} nameOfUserToFollow - The username of the user to follow.
+ * @returns {Promise<boolean>} `true` if the follow operation is successful; otherwise, `false`.
+ */
 export async function followUser(nameOfUserToFollow) {
     let url = baseUrl + `/social/profiles/${nameOfUserToFollow}/follow`;
     const jwt = localStorage.getItem("jwt")
@@ -48,13 +66,19 @@ export async function followUser(nameOfUserToFollow) {
     const response = await fetch(url, fetchOptions);
 
     const data = await response.json();
-    console.log(data);
 
     if(data.errors && data.errors.length > 0) {
         return false;
     }
     return true;
 }
+
+/**
+ * Unfollows a user on the social platform by their username.
+ *
+ * @param {string} nameOfUserToUnfollow - The username of the user to unfollow.
+ * @returns {Promise<boolean>} `true` if the unfollow operation is successful; otherwise, `false`.
+ */
 export async function unFollowUser(nameOfUserToUnfollow) {
     let url = baseUrl + `/social/profiles/${nameOfUserToUnfollow}/unfollow`;
     const jwt = localStorage.getItem("jwt")
@@ -66,7 +90,6 @@ export async function unFollowUser(nameOfUserToUnfollow) {
     const response = await fetch(url, fetchOptions);
 
     const data = await response.json();
-    console.log(data);
 
     if(data.errors && data.errors.length > 0) {
         return false;

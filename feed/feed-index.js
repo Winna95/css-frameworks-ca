@@ -1,17 +1,26 @@
 import { isAuthenticated } from "../js/authenticate.js";
 import {createPost, getPostsFromFollowed} from "../js/posts-api.js";
+import {getProfileForName} from "../js/profile-api.js";
 
 if(!isAuthenticated()) {
     window.location = "/"
 }
 
 const createPostForm = document.querySelector("#createPostForm")
+
+
+/**
+ * Event handler for submitting when creating a post.
+ *
+ * This function is triggered when the createPostForm is submitted.
+ * It prevents the default form submission behavior, validates the form,
+ * and submits the post data to the server using the `createPost` function.
+ * It also shows a message for success or failure of the post submission.
+ *
+ * @param {Event} submitEvent - The submit event triggered by the createPostForm.
+ * @returns {void}
+ */
 createPostForm.addEventListener("submit", submitEvent => {
-    //sjekk validering
-    // hvis ok - kall på funksjon som sender kall til serveren
-    // hvis det ikke går bra, vis form validations errors.
-    // vise feilmelding fra serveren ved feil.
-    // hvis det gikk bra å sende til serveren, null ut input feltene og vis melding til bruker om at posten er registert og med link til profil.
     submitEvent.stopPropagation();
     submitEvent.preventDefault();
     if(createPostForm.checkValidity()) {
@@ -49,6 +58,14 @@ createPostForm.addEventListener("submit", submitEvent => {
 
 let allPostsFromServer;
 
+
+/**
+ * Fetches posts from the server based on a specified tag and updates the HTML content.
+ *
+ * @param {string} tag - The tag to filter posts by.
+ * @returns {void}
+ * @example
+ */
 function fetchPostFromServer(tag) {
     getPostsFromFollowed(tag).then(posts => {
         const noPostPlaceholder = document.querySelector("#noPostsPlaceholder");
@@ -65,19 +82,22 @@ function fetchPostFromServer(tag) {
 
 fetchPostFromServer();
 
-//legg på key up eventlistener på seach input (for å oppdage hver gaang noen skriver noe)
-//i eventlistenern sjekk om innholdet i inputen ikke er tomt eller blankt
-//filtrere listen over lle poster, basert på det brukeren har skrevet inn.
-// vis frem html for de gjenverende postene etter filtrering.
 
 
 const searchInput = document.querySelector("#searchInput");
-console.log(searchInput);
 
+/**
+ * Event handler for searching posts based on a search input.
+ *
+ * This function is triggered when a user types into the searchInput field.
+ * It filters the posts based on the provided search query and updates
+ * the displayed posts accordingly.
+ *
+ * @param {Event} event - The keyup event triggered by the searchInput field.
+ * @returns {void}
+ */
 searchInput.onkeyup = function (event) {
-    console.log(event);
     const searchQuery = searchInput.value
-    console.log(searchQuery);
     if(searchQuery && searchQuery !== "" && searchQuery !== " " ) {
        const filteredPosts = allPostsFromServer.filter(postFromServer => {
             const jsonForPosts = JSON.stringify(postFromServer).toLowerCase();
@@ -93,7 +113,13 @@ searchInput.onkeyup = function (event) {
     }
 }
 
-
+/**
+ * Inserts an array of posts as HTML elements into the specified placeholder.
+ *
+ * @param {Array} postsToShow - An array of post objects to be displayed as HTML elements.
+ * @returns {void}
+ * @example
+ */
 function insertPostsAsHtml(postsToShow) {
     const postsHtml =  postsToShow.map(post => {
         return `<div
@@ -129,6 +155,14 @@ function insertPostsAsHtml(postsToShow) {
     const placeholderPosts = document.querySelector("#postsPlaceholder");
     placeholderPosts.innerHTML = postsHtml
 }
+
+/**
+ * Creates an HTML button element representing a tag.
+ *
+ * @param {string} tag - The tag text.
+ * @returns {string} - An HTML button element as a string.
+ * @example
+ */
 function createHtmlForTag (tag) {
     return `<button class="fw-bolder border-0 bs-white-color">
                 #${tag}
@@ -136,6 +170,17 @@ function createHtmlForTag (tag) {
 }
 
 const filterTagInput = document.querySelector("#filterTagInput");
+/**
+ * Event handler for filtering posts based on a tag input.
+ *
+ * This function is triggered when a user types into the filterTagInput field.
+ * It fetches posts from the server based on the provided tag query and updates
+ * the displayed posts accordingly.
+ *
+ * @param {Event} event - The keyup event triggered by the filterTagInput field.
+ * @returns {void}
+ * @example
+ */
 filterTagInput.onkeyup = function (event) {
     const filterQuery = filterTagInput.value;
     if(filterQuery && filterQuery !== "" && filterQuery !== " ") {
@@ -146,12 +191,64 @@ filterTagInput.onkeyup = function (event) {
     }
 }
 
-//hente tags fra api
-// legge til onkeyup eventlistener i søke feltet
-//i eventlistenern sjekk om innholdet i inputen ikke er tomt eller blankt
-//filtrere listen over alle poster, basert på det brukeren har skrevet inn via api'et.
-//vis frem html for de postene som inneholder den tagget det er søkt etter.
-//dersom det ikke er noen poster som inneholder den taggen det søkes etter, vis ingen poster.
-//hvis bruker hvisker bort, må postene lastes inn på nytt.
+/**
+ * Renders a list of friends' avatars on the social media app.
+ *
+ * @param {Array} myFriends - An array of friend objects with avatar information.
+ * @returns {void}
+ */
+function renderFriends(myFriends) {
+    const seeFriendsPlaceholder = document.querySelector("#seeFriendsPlaceholder");
+    const listOfFriendsInHtml = myFriends.map(friend => {
+        return `
+          <img
+            src="${friend.avatar}"
+            alt="profile picture"
+            class="img-fluid rounded-circle col-2 p-3 feed-avatar-img object-fit-cover"
+          />
+        `
+    })
+    const html = listOfFriendsInHtml.join(" ");
+    seeFriendsPlaceholder.innerHTML = html;
+}
 
+/**
+ * Loads and displays the friends of the currently logged-in user on the app.
+ *
+ * This function retrieves the profile of the current user, extracts their friends' information,
+ * and renders the first 5 friends' avatars on the app. It also handles the "See More" and "See Fewer"
+ * buttons to show or hide all the friends.
+ *
+ * @returns {void}
+ */
+function loadFriendsOfUser() {
+
+    const nameOfCurrentUser = localStorage.getItem("name");
+    getProfileForName(nameOfCurrentUser, true).then(profile => {
+        const myFriends = profile.following.slice(0,5);
+        renderFriends(myFriends);
+
+        const seeFriendsBtn = document.querySelector("#seeFriendsBtn");
+        const seeFewerFriendsBtn = document.querySelector("#seeFewerFriends");
+        if(profile.following.length < 5) {
+            seeFriendsBtn.classList.add("d-none");
+        } else {
+            seeFriendsBtn.addEventListener("click", event => {
+                renderFriends(profile.following);
+                seeFewerFriendsBtn.classList.remove("d-none");
+                seeFriendsBtn.classList.add("d-none");
+            })
+        }
+
+        seeFewerFriendsBtn.addEventListener("click", event => {
+            renderFriends(myFriends);
+            seeFewerFriendsBtn.classList.add("d-none");
+            seeFriendsBtn.classList.remove("d-none");
+        })
+
+
+    })
+}
+
+loadFriendsOfUser()
 

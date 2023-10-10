@@ -8,6 +8,14 @@ if(!isAuthenticated()) {
 
 const nameOfLoggedInUser = localStorage.getItem("name");
 
+/**
+ * Composes HTML markup for an update form for a post.
+ *
+ * @param {Object} post - The post object containing title, body, and media information.
+ * @param {string} tagsString - A string representing the tags for the post (optional).
+ * @returns {string} HTML markup for the update form.
+ */
+
 function composeUpdateFormHtml(post, tagsString) {
     return `<form novalidate class="row p-3" id="editPostForm">
 
@@ -55,6 +63,9 @@ function composeUpdateFormHtml(post, tagsString) {
                 </div>
             </div>
             <div class="d-flex justify-content-end row">
+            <button class="btn btn-primary col-3 text-white fw-bold mb-2 me-2" id="cancelBtn">
+                    Cancel
+                </button>
                 <button class="btn btn-primary col-3 text-white fw-bold mb-2" id="updateBtn">
                     Update
                 </button>
@@ -67,6 +78,9 @@ function composeUpdateFormHtml(post, tagsString) {
     `;
 }
 
+/**
+ * Loads and renders the posts created by the logged-in user, including functionality for editing and deleting posts.
+ */
 function loadAndRenderPosts() {
     getPostsByUser(nameOfLoggedInUser).then(postsByUser => {
         const placeholderProfilePosts = document.querySelector("#placeholderProfilePosts");
@@ -76,7 +90,7 @@ function loadAndRenderPosts() {
           >
             <div class="bs-white-color px-4 rounded-2">
             <div class="d-flex justify-content-end">
-            <button id="editBtn" class="mt-2 me-2 btn btn-primary px-3 text-white fw-bold" data-postId="${postByUser.id}">Update</button>
+            <button id="editBtn" class="mt-2 me-2 btn btn-primary px-3 text-white fw-bold" data-postId="${postByUser.id}">Edit</button>
             <button id="deleteBtn" class="mt-2 btn btn-primary px-3 text-white fw-bold" data-postId="${postByUser.id}">Delete</button>
             <div id="deletePostPlaceholder" class="d-none alert alert-danger">Could not delete post, please try again later</div>
             </div>
@@ -96,7 +110,6 @@ function loadAndRenderPosts() {
         placeholderProfilePosts.innerHTML = listOfHtmlPosts.join(" ");
 
         const deleteBtns = document.querySelectorAll("#deleteBtn");
-        console.log(deleteBtns);
         deleteBtns.forEach(btn => {
             btn.addEventListener("click", event => {
                 const postId = btn.getAttribute("data-postId");
@@ -144,6 +157,10 @@ function loadAndRenderPosts() {
                         }
                         })
                     })
+                    const cancelBtn = document.querySelector("#cancelBtn");
+                    cancelBtn.addEventListener("click", event => {
+                        editPostFormPlaceholder.innerHTML = "";
+                    })
                 })
             })
         })
@@ -152,34 +169,13 @@ function loadAndRenderPosts() {
 
 loadAndRenderPosts();
 
-// legge til en delete knapp
-// når man trykker på knappen skal man kunne slette posten
-// legge til en eventlistener på knappen
-// slette posten på serveren via api
-//hvis det går bra å slette den, vise siden på nytt med postene
-
-
-
-
-//legge til en update knapp
-// opprett html knapp, med et attribut som er postId.
-// når man trykker på rediger, skal det dukke opp en form, der man kan redigere posten
-// eventlistener på knappen, lage en placeholder der man kan sette inn en form hvis knappet er trykket inn.
-
-// når man lagrer endringene på posten skal det lagres på serveren via api'et.
-// inne i formen legge til en lagre knapp, legge til event listner på denne
-// når man har lagt inn endringen skal man kalle på updatePost funksjonen, slik at endringene blir laget på serveren.
-// hvis det går bra skal posten vises på nytt på profil siden med den nye informasjonen
-// kalle på funksjonen som henter alle postene på nytt
-// går det dårlig, skal man få en melding om at det ikke gikk an å redigere posten akkuruat nå.
-// lage en alert (placeholder error) som forteller at posten ikke kunne redigeres.
-
-// Lage en placeholder hvor html kan settes inn
-// kalle på get profileforname() funksjonen for å hente
-// fra api'et skal man hente ut informasjon fra den brukeren som er logget inn sitt navn, avatar og antall følgere og hvor mange personen følger
-
-
 const nameOfUser = localStorage.getItem("name");
+
+/**
+ * Fetches and displays profile information for a user with the specified name.
+ *
+ * @param {string} nameOfUser - The username of the user for whom the profile information is fetched.
+ */
 getProfileForName(nameOfUser, false).then(profile => {
     const placeholderProfileInfo = document.querySelector("#placeholderProfileInfo");
     const html = ` <div class="d-flex justify-content-center">
@@ -187,13 +183,12 @@ getProfileForName(nameOfUser, false).then(profile => {
               src="${profile.avatar}"
               alt="profile
         picture"
-              class="img-fluid rounded-circle col-4 h-75 mw-50 object-fit-cover"
+              class="img-fluid rounded-circle col-4 feed-avatar-img mw-50 object-fit-cover"
             />
             <div class="align-self-center ms-5">
               <h2 class="fw-bold">${profile.name}</h2>
             </div>
           </div>`;
-    console.log(profile);
 placeholderProfileInfo.innerHTML = html
 
     const placeholderCounters = document.querySelector("#placeholderCounters");
