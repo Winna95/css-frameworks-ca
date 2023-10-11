@@ -174,11 +174,15 @@ export async function deletePost (id) {
  * Retrieves a post from the social platform by its id.
  *
  * @param {string} id - The id of the post to retrieve.
+ * @param includeAuthor
  * @returns {Promise<Object|boolean>} The post object if retrieval is successful; otherwise, `false`.
  */
-export async function getPostById (id) {
+export async function getPostById (id, includeAuthor) {
    
-    const url = baseUrl + `/social/posts/${id}`;
+    let url = baseUrl + `/social/posts/${id}`;
+    if (includeAuthor) {
+        url = url + `?_author=true`;
+    }
     const jwt = localStorage.getItem("jwt");
 
     const fetchOptions = {

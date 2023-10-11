@@ -122,7 +122,7 @@ searchInput.onkeyup = function (event) {
  */
 function insertPostsAsHtml(postsToShow) {
     const postsHtml =  postsToShow.map(post => {
-        return `<div
+        return `<a href="postDetails.html?postId=${post.id}"> <div
             class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto mb-5"
           >
             <div class="d-flex pt-4">
@@ -150,7 +150,9 @@ function insertPostsAsHtml(postsToShow) {
             <div class="mx-auto px-5 pb-5">
             ${post.tags.map(tag => createHtmlForTag(tag))}
             </div>
-          </div>`
+          </div>
+          </a>
+`
     }).join(" ");
     const placeholderPosts = document.querySelector("#postsPlaceholder");
     placeholderPosts.innerHTML = postsHtml

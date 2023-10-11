@@ -85,9 +85,10 @@ function loadAndRenderPosts() {
     getPostsByUser(nameOfLoggedInUser).then(postsByUser => {
         const placeholderProfilePosts = document.querySelector("#placeholderProfilePosts");
         const listOfHtmlPosts = postsByUser.map(postByUser => {
-            return `<div
+            return ` <div
             class="col-12 col-sm-6 mx-auto d-flex justify-content-center mb-5 grid gap-3"
           >
+          <a href="../feed/postDetails.html?postId=${postByUser.id}">
             <div class="bs-white-color px-4 rounded-2">
             <div class="d-flex justify-content-end">
             <button id="editBtn" class="mt-2 me-2 btn btn-primary px-3 text-white fw-bold" data-postId="${postByUser.id}">Edit</button>
@@ -105,7 +106,9 @@ function loadAndRenderPosts() {
                 ${postByUser.body}
               </p>
             </div>
-          </div>`;
+            </a>
+          </div>
+`;
         });
         placeholderProfilePosts.innerHTML = listOfHtmlPosts.join(" ");
 
@@ -128,7 +131,7 @@ function loadAndRenderPosts() {
         editBtns.forEach(btn => {
             const postId = btn.getAttribute("data-postId");
             btn.addEventListener("click", event => {
-                getPostById(postId).then(post => {
+                getPostById(postId, false).then(post => {
                     let tagsString = "";
                     if(post.tags) {
                         tagsString = post.tags.join(",");
