@@ -46,11 +46,11 @@ export async function createPost (title, postText, tags, pictureUrl) {
         body: postText
     }
     if (tags && Array.isArray(tags) ) {
-        requestBody.tags = tags
-    };
+        requestBody.tags = tags;
+    }
     if (pictureUrl) {
-        requestBody.media = pictureUrl
-    };
+        requestBody.media = pictureUrl;
+    }
     
     const fetchOptions = {
       method: "POST",
@@ -118,11 +118,11 @@ export async function updatePost (id, title, postText, tags, pictureUrl) {
         body: postText
     }
     if (tags && tags === Array.isArray(tags) ) {
-        requestBody.tags = tags
-    };
+        requestBody.tags = tags;
+    }
     if (pictureUrl) {
-        requestBody.media = pictureUrl
-    };
+        requestBody.media = pictureUrl;
+    }
     const fetchOptions = {
       method: "PUT",
       headers: {

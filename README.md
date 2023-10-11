@@ -24,8 +24,7 @@ User Page - where you can follow and unfollow other users.
 1. Clone the repo:
 
 ```bash
-endre denne:
-https://github.com/Winna95/Content-Management-Systems_CA_Winnie-Orbek_fp.git
+https://github.com/Winna95/css-frameworks-ca
 ```
 
 2. Install the dependencies:
@@ -52,8 +51,7 @@ prerequisites that are required for this project are webserver to host the websi
 
 Links to download the website:
 
-endre denne:
-https://github.com/Winna95/Content-Management-Systems_CA_Winnie-Orbek_fp.git
+https://github.com/Winna95/css-frameworks-ca
 
 Hosted link:
 

@@ -12,9 +12,8 @@ function createHtmlForTag (tag) {
 }
 
 getPostById(postId, true).then(post => {
-    console.log(post);
     const postDetailsPlaceholder = document.querySelector("#detailsPost-placeholder");
-    const postHtml = `
+    postDetailsPlaceholder.innerHTML = `
     <div
             class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto mt-5 mb-5"
           >
@@ -43,6 +42,5 @@ getPostById(postId, true).then(post => {
             <div class="mx-auto px-5 pb-5">
             ${post.tags.map(tag => createHtmlForTag(tag))}
             </div>
-          </div>`
-    postDetailsPlaceholder.innerHTML = postHtml;
+          </div>`;
 })

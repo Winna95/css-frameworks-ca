@@ -1,4 +1,4 @@
-import { isAuthenticated } from "../js/authenticate.js";
+import {isAuthenticated} from "../js/authenticate.js";
 import {createPost, getPostsFromFollowed} from "../js/posts-api.js";
 import {getProfileForName} from "../js/profile-api.js";
 
@@ -210,8 +210,7 @@ function renderFriends(myFriends) {
           />
         `
     })
-    const html = listOfFriendsInHtml.join(" ");
-    seeFriendsPlaceholder.innerHTML = html;
+    seeFriendsPlaceholder.innerHTML = listOfFriendsInHtml.join(" ");
 }
 
 /**

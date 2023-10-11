@@ -1,4 +1,4 @@
-import { isAuthenticated } from "../js/authenticate.js";
+import {isAuthenticated} from "../js/authenticate.js";
 import {deletePost, getPostById, getPostsByUser, updatePost} from "../js/posts-api.js";
 import {getProfileForName} from "../js/profile-api.js";
 
@@ -181,7 +181,7 @@ const nameOfUser = localStorage.getItem("name");
  */
 getProfileForName(nameOfUser, false).then(profile => {
     const placeholderProfileInfo = document.querySelector("#placeholderProfileInfo");
-    const html = ` <div class="d-flex justify-content-center">
+    placeholderProfileInfo.innerHTML = ` <div class="d-flex justify-content-center">
             <img
               src="${profile.avatar}"
               alt="profile
@@ -191,11 +191,10 @@ getProfileForName(nameOfUser, false).then(profile => {
             <div class="align-self-center ms-5">
               <h2 class="fw-bold">${profile.name}</h2>
             </div>
-          </div>`;
-placeholderProfileInfo.innerHTML = html
+          </div>`
 
     const placeholderCounters = document.querySelector("#placeholderCounters");
-const htmlCounters = `<div class="d-flex mx-auto text-center col-lg-8 mt-4">
+    placeholderCounters.innerHTML = `<div class="d-flex mx-auto text-center col-lg-8 mt-4">
             <div class="col-4 fw-bolder">
               <p>${profile._count.posts}</p>
               <p>posts</p>
@@ -208,8 +207,7 @@ const htmlCounters = `<div class="d-flex mx-auto text-center col-lg-8 mt-4">
               <p>${profile._count.following}</p>
               <p>Following</p>
             </div>
-          </div>`
-    placeholderCounters.innerHTML = htmlCounters;
+          </div>`;
 
 
 
