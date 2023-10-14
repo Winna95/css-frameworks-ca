@@ -6,7 +6,8 @@
     "test": "echo \"We will learn more about testing in the Workflow course\" && exit 1",
     "build": "sass src/scss:dist/css",
     "live-server": "live-server",
-    "watch": "sass --watch src/scss:dist/css"
+    "watch": "sass --watch src/scss:dist/css",
+    "start": "live-server"
   },
   "repository": {
     "type": "git",

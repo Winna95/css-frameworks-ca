@@ -9,7 +9,7 @@ const baseUrl = "https://api.noroff.dev/api/v1";
 export async function getPostsFromFollowed (tag) {
 
 
-      let url = baseUrl + "/social/posts/following?_author=true&_active=true`";
+      let url = baseUrl + "/social/posts/following?_author=true&_active=true";
     if(tag) {
         url = url + `&_tag=${tag}`
     }

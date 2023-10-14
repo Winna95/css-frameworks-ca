@@ -32,7 +32,11 @@ https://github.com/Winna95/css-frameworks-ca
 ```
 npm install
 ```
+3. Build scss
 
+``
+npm run build
+``
 ### Running
 
 To run the app, run the following commands:

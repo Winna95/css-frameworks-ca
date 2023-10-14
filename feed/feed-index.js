@@ -185,9 +185,8 @@ const filterTagInput = document.querySelector("#filterTagInput");
  */
 filterTagInput.onkeyup = function (event) {
     const filterQuery = filterTagInput.value;
-    if(filterQuery && filterQuery !== "" && filterQuery !== " ") {
+    if(filterQuery && filterQuery !== "" && filterQuery !== " " && filterQuery !== null) {
         fetchPostFromServer(filterQuery);
-
     } else {
         fetchPostFromServer();
     }
