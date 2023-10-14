@@ -63,11 +63,12 @@ let allPostsFromServer;
  * Fetches posts from the server based on a specified tag and updates the HTML content.
  *
  * @param {string} tag - The tag to filter posts by.
+ * @param sort
  * @returns {void}
  * @example
  */
-function fetchPostFromServer(tag) {
-    getPostsFromFollowed(tag).then(posts => {
+function fetchPostFromServer(tag, sort) {
+    getPostsFromFollowed(tag, sort).then(posts => {
         const noPostPlaceholder = document.querySelector("#noPostsPlaceholder");
         if (posts.length === 0) {
             noPostPlaceholder.classList.remove("d-none");
@@ -81,6 +82,16 @@ function fetchPostFromServer(tag) {
 }
 
 fetchPostFromServer();
+
+let sortValue = null;
+const sortSelect = document.querySelector("#sortSelect");
+sortSelect.onchange = event => {
+    sortValue = sortSelect.value;
+    if(sortValue === "null") {
+        sortValue = null;
+    }
+    fetchPostFromServer(filterQuery, sortValue)
+};
 
 
 
@@ -113,6 +124,31 @@ searchInput.onkeyup = function (event) {
     }
 }
 
+function createImgForPostMedia(media) {
+    if(media) {
+        return `<img
+                src="${media}"
+                alt="post image"
+                class="img-fluid rounded-2 post-img object-fit-cover"
+              />`
+    } else {
+        return `<i class="fa-regular fa-image"></i>`;
+    }
+}
+
+function createImageForAuthorAvatar(avatar) {
+    if(avatar) {
+        return `<img
+                src="${avatar}"
+                alt="profile picture"
+                class="img-fluid rounded-circle col-2 ms-5 object-fit-cover feed-avatar-img"
+              />`
+    } else {
+        return `<i class="fa-regular fa-image"></i>`;
+    }
+
+}
+
 /**
  * Inserts an array of posts as HTML elements into the specified placeholder.
  *
@@ -126,22 +162,16 @@ function insertPostsAsHtml(postsToShow) {
             class="bs-white-color rounded-2 col-lg-10 col-sm-12 mx-auto mb-5"
           >
             <div class="d-flex pt-4">
-              <img
-                src="${post.author.avatar}"
-                alt="profile picture"
-                class="img-fluid rounded-circle col-2 ms-5 object-fit-cover feed-avatar-img"
-              />
+            ${createImageForAuthorAvatar(post.author.avatar)}
+              
               <div class="ms-3 mt-4">
                 <b>${post.author.name}</b>
                 <p>${post.created}</p>
               </div>
             </div>
             <div class="text-center p-5">
-              <img
-                src="${post.media}"
-                alt="post image"
-                class="img-fluid rounded-2 post-img object-fit-cover"
-              />
+            ${createImgForPostMedia(post.media)}
+              
             </div>
             <h4 class="fw-bolder ps-5">${post.title}</h4>
             <p class="mx-auto px-5 pb-5">
@@ -184,14 +214,14 @@ const filterTagInput = document.querySelector("#filterTagInput");
  * @example
  */
 filterTagInput.onkeyup = function (event) {
-    const filterQuery = filterTagInput.value;
+    filterQuery = filterTagInput.value;
     if(filterQuery && filterQuery !== "" && filterQuery !== " " && filterQuery !== null) {
-        fetchPostFromServer(filterQuery);
+        fetchPostFromServer(filterQuery, sortValue);
     } else {
-        fetchPostFromServer();
+        fetchPostFromServer(null, sortValue);
     }
 }
-
+let filterQuery = null;
 /**
  * Renders a list of friends' avatars on the social media app.
  *

@@ -3,6 +3,18 @@ import {followUser, getAllProfiles, getProfileForName, unFollowUser} from "../js
 const nameOfUser = localStorage.getItem("name")
 const promises = [getProfileForName(nameOfUser, true), getAllProfiles()];
 
+function createImgForAvatar(avatar) {
+    if(avatar) {
+        return `<img
+                            src="${avatar}"
+                            alt="profile picture"
+                            class="img-fluid rounded-circle mt-5 object-fit-cover user-img"
+                    />`
+    } else {
+        return `<i class="fa-regular fa-image"></i>`;
+    }
+}
+
 /**
  * Handles the logic for rendering user profiles and managing follow/unfollow actions.
  *
@@ -30,11 +42,8 @@ Promise.all(promises).then((responses) => {
                 <div class="row">
 
                 <div class="d-flex justify-content-center col-5">
-                    <img
-                            src="${profile.avatar}"
-                            alt="profile picture"
-                            class="img-fluid rounded-circle mt-5 object-fit-cover user-img"
-                    />
+                ${createImgForAvatar(profile.avatar)}
+                    
                 </div>
                     <div class="col-7">
                     <h2 class="mt-5">${profile.name}</h2>

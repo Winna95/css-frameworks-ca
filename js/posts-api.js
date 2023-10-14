@@ -6,12 +6,15 @@ const baseUrl = "https://api.noroff.dev/api/v1";
  * @param {string} tag - Optional tag to filter the posts by.
  * @returns {Promise<Array>} An array of post objects if successful; otherwise, an empty array.
  */
-export async function getPostsFromFollowed (tag) {
+export async function getPostsFromFollowed (tag, sort) {
 
 
       let url = baseUrl + "/social/posts/following?_author=true&_active=true";
     if(tag) {
         url = url + `&_tag=${tag}`
+    }
+    if (sort) {
+        url = url + `&sort=${sort}`
     }
       const jwt = localStorage.getItem("jwt")
       const fetchOptions = {
