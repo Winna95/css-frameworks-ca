@@ -3,6 +3,12 @@ import {followUser, getAllProfiles, getProfileForName, unFollowUser} from "../js
 const nameOfUser = localStorage.getItem("name")
 const promises = [getProfileForName(nameOfUser, true), getAllProfiles()];
 
+/**
+ * Creates an HTML image element for a user's avatar or an image placeholder icon based on the provided avatar URL.
+ *
+ * @param {string|null} avatar - The URL of the user's avatar or null if no avatar is available.
+ * @returns {string} The HTML code for the image element or the image placeholder icon.
+ */
 function createImgForAvatar(avatar) {
     if(avatar) {
         return `<img

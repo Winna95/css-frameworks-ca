@@ -85,6 +85,11 @@ fetchPostFromServer();
 
 let sortValue = null;
 const sortSelect = document.querySelector("#sortSelect");
+/**
+ * Event handler for the change event on a select element to sort and update posts.
+ *
+ * @param {Event} event - The change event object triggered when the select element's value changes.
+ */
 sortSelect.onchange = event => {
     sortValue = sortSelect.value;
     if(sortValue === "null") {
@@ -124,6 +129,12 @@ searchInput.onkeyup = function (event) {
     }
 }
 
+/**
+ * Creates an HTML image element or an image placeholder icon based on the provided media URL.
+ *
+ * @param {string|null} media - The URL of the post media or null if no media is available.
+ * @returns {string} The HTML code for the image element or the image placeholder icon.
+ */
 function createImgForPostMedia(media) {
     if(media) {
         return `<img
@@ -136,6 +147,12 @@ function createImgForPostMedia(media) {
     }
 }
 
+/**
+ * Creates an HTML image element for an author's avatar or an image placeholder icon based on the provided avatar URL.
+ *
+ * @param {string|null} avatar - The URL of the author's avatar or null if no avatar is available.
+ * @returns {string} The HTML code for the image element or the image placeholder icon.
+ */
 function createImageForAuthorAvatar(avatar) {
     if(avatar) {
         return `<img
