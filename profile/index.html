@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@900&family=Public+Sans:wght@100;200;300;400;500;600;700;800;900&family=Trirong:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link href="../dist/css/index.css" rel="stylesheet" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/b318972c4d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="profileIndex.js"></script>
+  </head>
+
+  <body class="bs-body-color">
+    <nav class="navbar navbar-expand bg-secondary">
+      <div class="container">
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav ml-auto bg-secondary">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="navbarDropdownMenuLink"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fa-solid fa-bars"></i>
+              </a>
+              <ul
+                class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="navbarDropdownMenuLink"
+              >
+                <li>
+                  <button
+                    class="dropdown-item fw-bold text-center"
+                    type="button"
+                  >
+                    <a href="/feed/">Feed</a>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item fw-bold text-center"
+                    type="button"
+                  >
+                    <a href="/profile/">Profile</a>
+                  </button>
+                </li>
+                <li>
+                  <button
+                          class="dropdown-item fw-bold text-center"
+                          type="button"
+                  >
+                    <a href="/users/">Users</a>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    class="dropdown-item fw-bold text-center"
+                    type="button"
+                  >
+                    <a href="/">Log out</a>
+                  </button>
+                </li>
+
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container mt-5">
+        <div class="row" id="placeholderProfileInfo">
+        </div>
+
+        <div class="row" id="placeholderCounters">
+          <div class="d-flex mx-auto text-center col-lg-8 mt-4">
+            <div class="col-4 fw-bolder">
+              <p>2</p>
+              <p>posts</p>
+            </div>
+            <div class="col-4 fw-bolder">
+              <p>5</p>
+              <p>Followers</p>
+            </div>
+            <div class="col-4 fw-bolder">
+              <p>5</p>
+              <p>Following</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mx-auto mt-4 text-center">
+          <button
+            class="btn btn-primary px-5 text-white fw-bold mb-2"
+            type="submit"
+          >
+            Follow
+          </button>
+        </div>
+
+        <h4 class="text-center my-5 fw-bold">Posts:</h4>
+        <div class="row" id="placeholderEditForm"></div>
+        <div class="row" id="placeholderProfilePosts">
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>
